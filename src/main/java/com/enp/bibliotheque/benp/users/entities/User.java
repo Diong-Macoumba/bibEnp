@@ -2,6 +2,7 @@ package com.enp.bibliotheque.benp.users.entities;
 
 import com.enp.bibliotheque.benp.users.enums.Gender;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.junit.platform.commons.util.ToStringBuilder;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Builder
 @Data @AllArgsConstructor @NoArgsConstructor
 public class User implements UserDetails {
 
@@ -99,6 +101,6 @@ public class User implements UserDetails {
     @Override
     @Transient
     public boolean isEnabled() {
-        return active;
+        return true;
     }
 }

@@ -29,12 +29,11 @@ public class DataInitialzed {
     public void DataInitialyzed() {
 
         log.info("****************************** creation du super-admin ******************************");
-        final User fall = User.builder()
-                .id(null).firstname("Al Ousseynou").lastname("Fall").username("ousseynou")
-                .password(passwordEncoder.encode("Fall@86")).gender(Gender.MALE)
-                .phoneNumber("779909898").email("fall@enp.sn").active(true).creationDate(ZonedDateTime.now())
-                .build();
-        userService.create(fall);
+        userService.create(User.builder()
+                            .id(null).firstname("Al Ousseynou").lastname("Fall").username("ousseynou")
+                            .password(passwordEncoder.encode("Fall@86")).gender(Gender.MALE)
+                            .phoneNumber("779909898").email("fall@enp.sn").active(true).creationDate(ZonedDateTime.now())
+                    .build());
 
         userService.addRoleToUser("Ousseynou", Profile.SUPER_ADMIN.name());
 
