@@ -1,4 +1,4 @@
-package com.enp.bibliotheque.benp.users.service;
+package com.enp.bibliotheque.benp.users.services;
 
 import com.enp.bibliotheque.benp.users.entities.Role;
 import com.enp.bibliotheque.benp.users.enums.Profile;
@@ -18,18 +18,10 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository = roleRepository;
     }
 
-    @Override
-    public void initialize() {
-    if( roleRepository.count() > 0) {
-        return;
-    }
-    for (Profile profile: Profile.values()) {
-        Role role = new Role();
-        role.setRole(profile.name());
-        roleRepository.save(role);
-    }
 
-    roleRepository.flush();
+    @Override
+    public Role create(Role role) {
+        return roleRepository.saveAndFlush(role);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.enp.bibliotheque.benp.users.entities;
 
 import com.enp.bibliotheque.benp.users.enums.Gender;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class User implements UserDetails {
     private String username;
 
     @Column(name = "password", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Transient

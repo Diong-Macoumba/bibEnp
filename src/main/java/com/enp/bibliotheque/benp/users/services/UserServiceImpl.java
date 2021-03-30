@@ -1,4 +1,4 @@
-package com.enp.bibliotheque.benp.users.service;
+package com.enp.bibliotheque.benp.users.services;
 
 import com.enp.bibliotheque.benp.exception.InvalidPasswordException;
 import com.enp.bibliotheque.benp.users.entities.User;
@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) {
         if (user == null) {
+            assert false;
             if (!user.getPassword().equals(user.getRepassword()))
                 throw new InvalidPasswordException("le mot de passe n'est pas identique ");
 
@@ -43,8 +44,8 @@ public class UserServiceImpl implements UserService {
             u.setPhoneNumber(user.getPhoneNumber());
             u.setGender(user.getGender());
             u.setActive(user.getActive());
+            u.setAuthorities(List.of(roleRepository.findRoleByRole(Profile.USER.name())));
             userRepository.save(u);
-            addRoleToUser(user.getUsername(), Profile.USER.name());
             return u;
         } else {
             throw new UsernameNotFoundException("l'utilisateur existe 'déja "+ user.getUsername());
@@ -60,13 +61,6 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
 
         return userRepository.findUserByUsername(username);
-    }
-
-    @Override
-    public void addRoleToUser(String username, String role) {
-
-        User user = userRepository.findUserByUsername(username);
-        user.setAuthorities(List.of(roleRepository.findRoleByRole(role)));
     }
 
     @Override
