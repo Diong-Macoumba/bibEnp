@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -61,6 +62,24 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
 
         return userRepository.findUserByUsername(username);
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        return userRepository.findUserById(id);
+    }
+
+
+    @Override
+    public List<User> findAll() {
+
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void delete(Long id) {
+
+        userRepository.deleteById(id);
     }
 
     @Override

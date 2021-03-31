@@ -40,6 +40,7 @@ public class User implements UserDetails {
     private String password;
 
     @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String repassword;
 
     @Column(name = "gender", nullable = false)
