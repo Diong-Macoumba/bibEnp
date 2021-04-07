@@ -3,7 +3,6 @@ package com.enp.bibliotheque.benp.security.services.impl;
 import com.enp.bibliotheque.benp.persons.entities.User;
 import com.enp.bibliotheque.benp.persons.repositories.UserRepository;
 import com.enp.bibliotheque.benp.security.entity.UserPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserPrincipal loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userRepository.findByUsername(username);
 

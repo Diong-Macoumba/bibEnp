@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -65,6 +66,22 @@ public class User implements Serializable {
 
     private Boolean active;
 
-    @ManyToMany @JoinColumn
+    @ManyToMany(fetch = FetchType.EAGER)
     Collection<Role> roles = new ArrayList<>();
+
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("idENPUser", id)
+                .append("prenom", firstname)
+                .append("nom", lastname)
+                .append("username", username)
+                .append("password", password)
+                .append("rePassword", repassword)
+                .append("email", email)
+                .append("active", active)
+                .append("telephone", phoneNumber)
+                .append("gender", gender)
+                .append("enpRoles", roles)
+                .toString();
+    }
 }

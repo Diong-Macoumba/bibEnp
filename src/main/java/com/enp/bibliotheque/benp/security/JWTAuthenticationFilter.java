@@ -1,6 +1,4 @@
-/*
 package com.enp.bibliotheque.benp.security;
-
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -55,12 +53,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         UserPrincipal userPrincipal = (UserPrincipal) authResult.getPrincipal();
 
         String token = JWT.create()
-                .withIssuer(request.getRequestURI())
-                .withSubject(userPrincipal.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION))
-                .sign(Algorithm.HMAC512(SECRET.getBytes()));
+                            .withIssuer(request.getRequestURI())
+                            .withSubject(userPrincipal.getUsername())
+                            .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION))
+                            .sign(Algorithm.HMAC512(SECRET.getBytes()));
 
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        System.out.println("token generé");
     }
 }
-*/
